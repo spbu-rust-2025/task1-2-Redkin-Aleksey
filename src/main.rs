@@ -1,8 +1,8 @@
 use std::io;
 
 fn main() {
-
     let mut sum: i64 = 0;
+    let mut nan: bool = false;
 
     loop {
         let mut input = String::new();
@@ -14,8 +14,8 @@ fn main() {
         let number: i64 = match input.trim().parse() {
             Ok(num) => num,
             Err(_) => {
-                println!("NaN");
-                return
+                nan = true;
+                continue;
             }
         };
 
@@ -24,6 +24,10 @@ fn main() {
         }
         sum += number;
     }
-
-    println!("{sum}");
+    if nan {
+        println!("NaN")
+    }
+    else {
+        println!("{sum}")
+    }
 }
